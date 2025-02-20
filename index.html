@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+
+    <div class="calculator">
+        <input class="answer">
+    <tbody>
+        <table>
+            <tr>
+                <td><button class="extra-operator">AC</button></td>
+                <td><button class="extra-operator">+/-</button></td>
+                <td><button class="extra-operator">%</button></td>
+                <td><button class="operator">/</button></td>
+            </tr>
+
+            <tr>
+                <td><button>7</button></td>
+                <td><button>8</button></td>
+                <td><button>9</button></td>
+                <td><button class="operator">*</button></td>
+            </tr>
+
+            <tr>
+                <td><button>4</button></td>
+                <td><button>5</button></td>
+                <td><button>6</button></td>
+                <td><button class="operator">-</button></td>
+            </tr>
+
+            <tr>
+                <td><button>1</button></td>
+                <td><button>2</button></td>
+                <td><button>3</button></td>
+                <td><button class="operator">+</button></td>
+            </tr>
+
+            <tr>
+                <td colspan="2"><button class="zero">0</button></td>
+                <td><button>.</button></td>
+                <td><button class="operator">=</button></td>
+            </tr>
+        </table>
+    </div>
+    </tbody>
+
+    <script>
+        window.onload=function(){
+           const input =document.querySelector('input');
+            var btns = document.querySelectorAll('button');
+            for(var i =0; i<btns.length; i++){
+               btns[i].addEventListener('click',function(){
+              if(this.innerHTML == '='){
+               input.value=eval(input.value);
+              }
+              
+              else if(this.innerHTML == 'AC'){
+                 input.value= '';
+              }
+
+              else if(this.innerHTML == '+/-'){
+               var answer=  input.value=eval(input.value);
+               answer =parseInt(answer);
+               input.value= -answer;
+              }
+
+              else if(this.innerHTML == '%'){
+                 var eq = input.value;
+                 if(eq.includes('+')){
+                    var sign ='+';
+                     eq = eq.split('+');
+                 } else if(eq.includes('-')){
+                    var sign ='-';
+                     eq = eq.split('-');
+                 }else if(eq.includes('*')){
+                    var sign ='*';
+                     eq = eq.split('*');
+                 }else if(eq.includes('/')){
+                    var sign ='/';
+                     eq = eq.split('/');
+                 }
+
+                 var primary= eq[0];
+                 var secondary= eq[1];
+                 var answer=eval(primary)
+              }
+              
+
+              
+              else{
+                input.value += this.innerHTML;
+              }
+            })
+           }
+        }
+   </script>
+    </div>
+</body>
+</html>
